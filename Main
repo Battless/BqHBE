@@ -1,0 +1,36 @@
+--[[
+    BqHBE V1.0
+    By Bq
+    Disclaimer: I do not condone usage of said exploits, this is purely used as a way to challenge myself in developing to Roblox.
+    06/19/2021 (my birthday)
+]]
+
+
+--CONFIGS--
+
+_G.legitmode = true -- automatically set to true, set to false for customization. Also it's 100% transparent
+
+_G.transparency = 0.2 -- what do u think idiot
+_G.color = "Really red" -- BrickColor.new() value
+_G.size = 5 -- could look pretty legit if ur at 4, 5-6 could be latency 
+_G.material = "Neon" -- aesthetic
+
+--CODE (DONT TOUCH UNLESS U KNOW HOW LUA WORKS)--
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    for i, v in next, game:GetService("Players"):GetPlayers()do
+        if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+          pcall(function()
+             if _G.legitmode == true then
+                v.HumanoidRootPart.Size = Vector3.new(4,4,4)
+                v.HumanoidRootPart.Transparency = 1
+             else
+                v.HumanoidRootPart.Size = Vector3.new(_G.size,_G.size,_G.size)
+                v.HumanoidRootPart.Transparency = _G.transparency
+                v.HumanoidRootPart.BrickColor = BrickColor.new(_G.color)
+                v.HumanoidRootPart.Material = _G.Material
+             end
+          end)
+       end
+    end    
+end)
