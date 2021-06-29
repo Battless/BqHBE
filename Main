@@ -15,6 +15,8 @@ _G.hitboxColor = "Really red" -- BrickColor.new() value
 _G.hitboxSize = 5 -- could look pretty legit if ur at 4, 5-6 could be latency 
 _G.hitboxMaterial = "Plastic" -- aesthetic
 
+_G.decal = 6552522568 -- Leave at 0 if you don't wan't any decals for poggers trolling
+
 --CODE (DONT TOUCH UNLESS U KNOW HOW LUA WORKS)--
 
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -27,8 +29,26 @@ game:GetService("RunService").RenderStepped:Connect(function()
 					v.Character.HumanoidRootPart.BrickColor = BrickColor.new(_G.hitboxColor)
 					v.Character.HumanoidRootPart.Material = _G.hitboxMaterial
 					v.Character.HumanoidRootPart.CanCollide = false
+					
+					if _G.decal > 0 then
+						if v.Character.HumanoidRootPart:FindFirstChildWhichIsA("Decal")then
+							wait()
+						else
+							local deecal = Instance.new("Decal")
+							deecal.Parent = v.Character.HumanoidRootPart
+							deecal.Face = "Front"
+							deecal.Texture = "rbxassetid://".._G.decal						
+						end					
+					end
 				end)
 			end
 		end 	
 	end   
 end)
+
+--[[
+	Update Log
+	
+	06/28/2021 - Added decal stuff
+
+]]
