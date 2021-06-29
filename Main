@@ -1,5 +1,3 @@
-doesnt work yet dont use u idiot
-
 --[[
     BqHBE V1.0
     By Bq
@@ -10,22 +8,27 @@ doesnt work yet dont use u idiot
 
 --CONFIGS--
 
-_G.hitboxTransparency = 0.2 -- what do u think idiot
+_G.enabled = true -- false to hide it all
+
+_G.hitboxTransparency = 0.8 -- what do u think idiot
 _G.hitboxColor = "Really red" -- BrickColor.new() value
 _G.hitboxSize = 5 -- could look pretty legit if ur at 4, 5-6 could be latency 
-_G.hitboxMaterial = "Neon" -- aesthetic
+_G.hitboxMaterial = "Plastic" -- aesthetic
 
 --CODE (DONT TOUCH UNLESS U KNOW HOW LUA WORKS)--
 
 game:GetService("RunService").RenderStepped:Connect(function()
-	for i, v in next, game:GetService("Players"):GetPlayers()do
-		if v.Name ~= game:GetService("Players").LocalPlayer.Name then
-			pcall(function()
-				v.HumanoidRootPart.Size = Vector3.new(_G.hitboxSize,_G.hitboxSize,_G.hitboxSize)
-				v.HumanoidRootPart.Transparency = _G.hitboxTransparency
-				v.HumanoidRootPart.BrickColor = BrickColor.new(_G.hitboxColor)
-				v.HumanoidRootPart.Material = _G.hitboxMaterial
-			end)
-		end
-	end    
+	if _G.enabled then
+		for i, v in pairs(game:GetService("Players"):GetPlayers())do
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				pcall(function()
+					v.Character.HumanoidRootPart.Size = Vector3.new(_G.hitboxSize,_G.hitboxSize,_G.hitboxSize)
+					v.Character.HumanoidRootPart.Transparency = _G.hitboxTransparency
+					v.Character.HumanoidRootPart.BrickColor = BrickColor.new(_G.hitboxColor)
+					v.Character.HumanoidRootPart.Material = _G.hitboxMaterial
+					v.Character.HumanoidRootPart.CanCollide = false
+				end)
+			end
+		end 	
+	end   
 end)
